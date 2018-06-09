@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 // HtmlWebpackPlugin takes html file and injects into index_bundle.js
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: __dirname + '/src/index.html',
+  template: path.join(__dirname, '/src/index.html'),
   filename: 'index.html',
   inject: 'body',
 })
