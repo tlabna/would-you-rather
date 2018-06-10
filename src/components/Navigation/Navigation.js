@@ -7,10 +7,6 @@ Navigation.propTypes = NavLinks.propTypes = ActionLinks.propTypes = {
   isAuthed: PropTypes.bool.isRequired,
 }
 
-Navigation.defaultProps = {
-  isAuthed: false,
-}
-
 function NavLinks({ isAuthed }) {
   return isAuthed === true ? (
     <ul>

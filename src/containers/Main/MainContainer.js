@@ -9,6 +9,10 @@ export default class MainContainer extends Component {
     isAuthed: PropTypes.bool.isRequired,
   }
 
+  static defaultProps = {
+    isAuthed: false,
+  }
+
   render() {
     return (
       <div className={container}>

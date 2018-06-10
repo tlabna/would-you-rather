@@ -1,10 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import { MainContainer, HomeContainer } from 'containers'
 
-export default function getRoutes() {
+export default function getRoutes(checkAuth, history) {
   return (
-    <Router>
+    <Router history={history}>
       <MainContainer>
         <Switch>
           <Route exact={true} path="/" component={HomeContainer} />
