@@ -1,8 +1,4 @@
-import React from 'react'
 import ReactDOM from 'react-dom'
+import getRoutes from 'config/routes'
 
-function Main() {
-  return <p>{'Hello World!'}</p>
-}
-
-ReactDOM.render(<Main />, document.getElementById('app'))
+ReactDOM.render(getRoutes(), document.getElementById('app'))
