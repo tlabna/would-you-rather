@@ -2,15 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Navigation } from 'components'
 import { container, innerContainer } from './styles.css'
+import { connect } from 'react-redux'
 
-export default class MainContainer extends Component {
+class MainContainer extends Component {
   static propTypes = {
     children: PropTypes.any.isRequired,
     isAuthed: PropTypes.bool.isRequired,
-  }
-
-  static defaultProps = {
-    isAuthed: false,
   }
 
   render() {
@@ -22,3 +19,11 @@ export default class MainContainer extends Component {
     )
   }
 }
+
+function mapStateToProps({ users }) {
+  return {
+    isAuthed: users.isAuthed,
+  }
+}
+
+export default connect(mapStateToProps)(MainContainer)
