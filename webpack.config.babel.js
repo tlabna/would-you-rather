@@ -43,7 +43,7 @@ const base = {
         test: /\.css$/,
         // 'style!css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]' let's us use CSS modules
         loader:
-          'style!css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]',
+          'style-loader!css-loader?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]',
       },
     ],
   },

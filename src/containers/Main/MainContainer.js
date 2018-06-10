@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { container, innerContainer } from './styles.css'
 
 export default class MainContainer extends Component {
   static propTypes = {
@@ -8,9 +9,8 @@ export default class MainContainer extends Component {
 
   render() {
     return (
-      <div>
-        {'MainContainer'}
-        <div>{this.props.children}</div>
+      <div className={container}>
+        <div className={innerContainer}>{this.props.children}</div>
       </div>
     )
   }
