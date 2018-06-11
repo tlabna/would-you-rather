@@ -3,6 +3,21 @@ import { Modal } from 'components'
 import { connect } from 'react-redux'
 import * as modalActionCreators from 'redux/reducers/modal'
 
+/*
+* Removed react container component since there is no need for it.
+* WHY? => This container component has no lifecycle event or state so there really is no need
+* to create the container component.
+* INSTEAD we can pass the props directly to the Modal component
+
+class ModalContainer extends React.Component {
+  render () {
+    return (
+      <Modal />
+    )
+  }
+}
+ */
+
 function isSubmitDisabled(firstText, secondText, title) {
   return (
     firstText.length <= 0 ||
