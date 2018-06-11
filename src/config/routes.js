@@ -13,9 +13,9 @@ export default function getRoutes(checkAuth, history) {
     <Router history={history}>
       <MainContainer>
         <Switch>
-          <Route exact={true} path="/" component={HomeContainer} />
-          <Route path="/auth" component={AuthenticateContainer} />
-          <Route path="/results" component={ResultsContainer} />
+          <Route exact={true} path="/" component={checkAuth(HomeContainer)} />
+          <Route path="/auth" component={checkAuth(AuthenticateContainer)} />
+          <Route path="/results" component={checkAuth(ResultsContainer)} />
         </Switch>
       </MainContainer>
     </Router>

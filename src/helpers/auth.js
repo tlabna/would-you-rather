@@ -22,3 +22,9 @@ export function saveUser(user) {
       .then(() => user)
   )
 }
+
+export function checkIfAuthed(store) {
+  // Ignoring Firebase.
+  // console.log(store.getState())
+  return store.getState().users['isAuthed']
+}

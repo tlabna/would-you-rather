@@ -7,6 +7,7 @@ import thunk from 'redux-thunk'
 import * as reducers from 'redux/reducers'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
+import restricted from 'helpers/restricted'
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()
@@ -22,8 +23,8 @@ const store = createStore(
   )
 )
 
-function checkAuth(nextState, replace) {
-  return true
+function checkAuth(component) {
+  return restricted(component, store)
 }
 
 ReactDOM.render(
