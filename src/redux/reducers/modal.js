@@ -27,7 +27,7 @@ export function updateDecisionText(decisionType, decisionText) {
 export function saveAndCloseModal(decision) {
   return (dispatch) => {
     saveDecision(decision)
-      .then(() => dispatch(closeModal))
+      .then(() => dispatch(closeModal()))
       .catch((error) => console.warn('Error saving decision', error))
   }
 }
