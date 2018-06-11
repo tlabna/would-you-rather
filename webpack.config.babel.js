@@ -62,6 +62,7 @@ const developmentConfig = {
     hot: true,
     inline: true,
     progress: true,
+    historyApiFallback: true,
   },
   // HMRE allows state in react to not change on page reload
   plugins: [HtmlWebpackPluginConfig, new webpack.HotModuleReplacementPlugin()],

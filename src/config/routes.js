@@ -1,6 +1,7 @@
 import React from 'react'
-import { Router, Route, Switch } from 'react-router-dom'
-import { MainContainer, HomeContainer } from 'containers'
+import { Route, Switch } from 'react-router-dom'
+import { Router } from 'react-router'
+import { MainContainer, HomeContainer, AuthenticateContainer } from 'containers'
 
 export default function getRoutes(checkAuth, history) {
   return (
@@ -8,6 +9,7 @@ export default function getRoutes(checkAuth, history) {
       <MainContainer>
         <Switch>
           <Route exact={true} path="/" component={HomeContainer} />
+          <Route path="/auth" component={AuthenticateContainer} />
         </Switch>
       </MainContainer>
     </Router>

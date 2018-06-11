@@ -3,11 +3,19 @@ import PropTypes from 'prop-types'
 import { Navigation } from 'components'
 import { container, innerContainer } from './styles.css'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as userActionCreators from 'redux/reducers/users'
+import { withRouter } from 'react-router-dom'
 
 class MainContainer extends Component {
   static propTypes = {
     children: PropTypes.any.isRequired,
     isAuthed: PropTypes.bool.isRequired,
+    removeFetchingUser: PropTypes.func.isRequired,
+  }
+
+  componentDidMount() {
+    this.props.removeFetchingUser()
   }
 
   render() {
@@ -26,4 +34,13 @@ function mapStateToProps({ users }) {
   }
 }
 
-export default connect(mapStateToProps)(MainContainer)
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(userActionCreators, dispatch)
+}
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(MainContainer)
+)
