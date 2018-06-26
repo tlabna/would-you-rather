@@ -29,7 +29,7 @@ function settingDecisionsListenerSuccess(data) {
 }
 
 export function setAndHandleDecisionsListener() {
-  return function(dispatch, getState) {
+  return (dispatch, getState) => {
     if (getState().listeners.decisions === true) {
       return
     }
@@ -88,10 +88,12 @@ export default function decisions(state = initialState, action) {
     case SETTING_DECISIONS_LISTENER_SUCCESS:
       return {
         ...state,
+        lastUpdated: action.timestamp || state.lastUpdated,
         isFetching: false,
+        error: '',
         decisions: {
           ...state.decisions,
-          [action.decisionId]: action.decision,
+          ...action.data,
         },
       }
     case ADD_DECISION:
