@@ -56,8 +56,10 @@ export default function Modal(props) {
     )
   }
   return (
-    <span className={darkBtn} onClick={props.openModal}>
-      {'New Decision'}
+    <div>
+      <span className={darkBtn} onClick={props.openModal}>
+        {'New Decision'}
+      </span>
       <ReactModal
         style={modalStyles}
         isOpen={props.isOpen}
@@ -109,6 +111,6 @@ export default function Modal(props) {
           {'Submit'}
         </button>
       </ReactModal>
-    </span>
+    </div>
   )
 }

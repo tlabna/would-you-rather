@@ -31,7 +31,7 @@ export default function Results(props) {
               <div>
                 <span>
                   {formatTimestamp(decision.timestamp)}
-                  {'by '}
+                  {' by '}
                   {decision.author.name}
                 </span>
               </div>
