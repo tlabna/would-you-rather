@@ -17,6 +17,7 @@ class MainContainer extends Component {
     removeFetchingUser: PropTypes.func.isRequired,
     authUser: PropTypes.func.isRequired,
     fetchingUserSuccess: PropTypes.func.isRequired,
+    fetchAndAddUsersMadeDecisions: PropTypes.func.isRequired,
     location: PropTypes.object.isRequired,
   }
 
@@ -34,10 +35,16 @@ class MainContainer extends Component {
           user.uid
         )
         this.props.authUser(user.uid)
-        this.props.fetchingUserSuccess(user.uid, userInfo, Date.now())
-        if (this.props.location.pathname === '/') {
-          this.context.router.history.replace('results')
-        }
+        this.props
+          .fetchAndAddUsersMadeDecisions(user.uid)
+          .then(() =>
+            this.props.fetchingUserSuccess(user.uid, userInfo, Date.now())
+          )
+          .then(() => {
+            if (this.props.location.pathname === '/') {
+              this.context.router.history.replace('results')
+            }
+          })
       } else {
         this.props.removeFetchingUser()
       }

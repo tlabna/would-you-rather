@@ -11,6 +11,7 @@ class ResultsContainer extends Component {
     error: PropTypes.string.isRequired,
     decisions: PropTypes.array.isRequired,
     lastUpdated: PropTypes.number.isRequired,
+    decisionsMade: PropTypes.object.isRequired,
     setAndHandleDecisionsListener: PropTypes.func.isRequired,
   }
 
@@ -24,10 +25,19 @@ class ResultsContainer extends Component {
     }
   }
 
+  handleToDecide = (decisionId) => {
+    this.context.router.history.push(`/decide/${decisionId}`)
+  }
+
   render() {
-    const { isFetching, error, decisions } = this.props
+    const { isFetching, error, decisions, decisionsMade } = this.props
     return (
-      <Results isFetching={isFetching} error={error} decisions={decisions} />
+      <Results
+        isFetching={isFetching}
+        error={error}
+        decisions={decisions}
+        decisionsMade={decisionsMade}
+        onToDecide={this.handleToDecide}/>
     )
   }
 }
@@ -40,6 +50,7 @@ function mapStateToProps({ decisions, users }) {
     decisions: Object.keys(allDecisions)
       .sort((a, b) => allDecisions[b].timestamp - allDecisions[a].timestamp)
       .map((id) => allDecisions[id]),
+    decisionsMade: users[users.authedId].decisionsMade,
     error: decisions.error,
   }
 }

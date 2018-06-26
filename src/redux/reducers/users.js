@@ -1,5 +1,6 @@
 import auth, { logout, saveUser } from 'helpers/auth'
 import { formatUserInfo } from 'helpers/utils'
+import { fetchUsersMadeDecisions } from 'helpers/api'
 
 const AUTH_USER = 'AUTH_USER'
 const UNAUTH_USER = 'UNAUTH_USER'
@@ -8,6 +9,7 @@ const FETCHING_USER_SUCCESS = 'FETCHING_USER_SUCCESS'
 const FETCHING_USER_FAILURE = 'FETCHING_USER_FAILURE'
 const REMOVE_FETCHING_USER = 'REMOVE_FETCHING_USER'
 const ADD_USER = 'ADD_USER'
+const ADD_USERS_MADE_DECISIONS = 'ADD_USERS_MADE_DECISIONS'
 
 export function addUser(user) {
   return {
@@ -52,6 +54,24 @@ function fetchingUserFailure(error) {
   }
 }
 
+export function addUsersMadeDecisions(uid, decisions) {
+  return {
+    type: ADD_USERS_MADE_DECISIONS,
+    uid,
+    decisions,
+  }
+}
+
+export function fetchAndAddUsersMadeDecisions(uid) {
+  return (dispatch, getState) => {
+    return fetchUsersMadeDecisions(uid)
+      .then((madeDecisions) =>
+        dispatch(addUsersMadeDecisions(uid, madeDecisions))
+      )
+      .catch((error) => console.warn(error))
+  }
+}
+
 export function fetchAndHandleAuthedUser() {
   return function(dispatch) {
     dispatch(fetchingUser())
@@ -63,7 +83,9 @@ export function fetchAndHandleAuthedUser() {
           userData.photoURL,
           user.uid
         )
-        return dispatch(fetchingUserSuccess(user.uid, userInfo, Date.now()))
+        return dispatch(fetchAndAddUsersMadeDecisions(user.uid)).then(() =>
+          dispatch(fetchingUserSuccess(user.uid, userInfo, Date.now()))
+        )
       })
       .then(({ user }) => saveUser(user))
       .then((user) => dispatch(authUser(user.uid)))
@@ -159,6 +181,14 @@ export default function users(state = InitialState, action) {
               info: action.user,
             },
           }
+    case ADD_USERS_MADE_DECISIONS:
+      return {
+        ...state,
+        [action.uid]: {
+          ...state[action.uid],
+          decisionsMade: action.decisions,
+        },
+      }
     default:
       return state
   }

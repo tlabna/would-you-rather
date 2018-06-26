@@ -32,3 +32,11 @@ export function fetchSingleDecision(decisionId) {
     .once('value')
     .then((snapshot) => snapshot.val() || {})
 }
+
+export function fetchUsersMadeDecisions(uid) {
+  return ref
+    .child(`users/${uid}/decisionsMade`)
+    .once('value')
+    .then((snapshot) => snapshot.val() || {})
+    .catch((error) => console.warn('Error fetching decisions', error))
+}
