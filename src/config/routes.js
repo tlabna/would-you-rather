@@ -6,6 +6,7 @@ import {
   HomeContainer,
   AuthenticateContainer,
   ResultsContainer,
+  DecideContainer,
 } from 'containers'
 
 export default function getRoutes(checkAuth, history) {
@@ -16,6 +17,10 @@ export default function getRoutes(checkAuth, history) {
           <Route exact={true} path="/" component={checkAuth(HomeContainer)} />
           <Route path="/auth" component={checkAuth(AuthenticateContainer)} />
           <Route path="/results" component={checkAuth(ResultsContainer)} />
+          <Route
+            path="/decide/:decisionId"
+            component={checkAuth(DecideContainer)}
+          />
         </Switch>
       </MainContainer>
     </Router>
