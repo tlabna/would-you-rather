@@ -139,6 +139,13 @@ export function addAndHandleDecision(decisionId, option) {
   }
 }
 
+export function logoutAndUnauth() {
+  return (dispatch) => {
+    logout()
+    dispatch(unauthUser())
+  }
+}
+
 const initialUserState = {
   lastUpdated: 0,
   info: {

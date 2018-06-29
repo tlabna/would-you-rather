@@ -7,6 +7,7 @@ import {
   AuthenticateContainer,
   ResultsContainer,
   DecideContainer,
+  LogoutContainer,
 } from 'containers'
 
 export default function getRoutes(checkAuth, history) {
@@ -21,6 +22,7 @@ export default function getRoutes(checkAuth, history) {
             path="/decide/:decisionId"
             component={checkAuth(DecideContainer)}
           />
+          <Route path="/logout" component={LogoutContainer} />
         </Switch>
       </MainContainer>
     </Router>

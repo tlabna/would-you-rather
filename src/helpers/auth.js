@@ -5,7 +5,9 @@ export default function auth() {
 }
 
 export function logout() {
-  return firebaseAuth().logout()
+  return firebaseAuth()
+    .signOut()
+    .catch((error) => console.warn('Error logging out', error))
 }
 
 /**

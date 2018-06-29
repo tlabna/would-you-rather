@@ -16,7 +16,7 @@ function settingDecisionsListener() {
 function settingDecisionsListenerError(error) {
   return {
     type: SETTING_DECISIONS_LISTENER_ERROR,
-    error: error,
+    error: String(error),
   }
 }
 

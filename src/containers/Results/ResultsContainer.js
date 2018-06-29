@@ -37,7 +37,8 @@ class ResultsContainer extends Component {
         error={error}
         decisions={decisions}
         decisionsMade={decisionsMade}
-        onToDecide={this.handleToDecide}/>
+        onToDecide={this.handleToDecide}
+      />
     )
   }
 }
