@@ -29,7 +29,7 @@ Card.propTypes = {
 function getPercentageColor(type) {
   return type === 'first'
     ? { color: '#267ea0', textShadow: '0 1px 2px rgba(255,255,255,0.5)' }
-    : { color: '#7e0b0b', textShawdow: '0 1px 2px rgba(255,255,255,0.5)' }
+    : { color: '#7e0b0b', textShadow: '0 1px 2px rgba(255,255,255,0.5)' }
 }
 
 function Card(props) {
